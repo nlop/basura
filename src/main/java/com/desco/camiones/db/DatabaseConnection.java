@@ -10,7 +10,7 @@ public class DatabaseConnection {
     private static Connection conn;
 
     /**
-     * Método estático que crea una conexión a la base de datos contenida en el archivo <it>database</it>
+     * Método estático que crea una conexión a la base de datos contenida en el archivo database
      * @param database Archivo de la base de datos
      */
     public static void connect(String database){
@@ -32,7 +32,27 @@ public class DatabaseConnection {
     public static void createSchema(){
         try {
             Statement st = conn.createStatement();
-            st.executeUpdate("CREATE TABLE camiones(id text,marca text,modelo text,año integer)");
+            st.executeUpdate("CREATE TABLE camiones(\n" +
+                    "    id TEXT," +
+                    "    tipo_registro TEXT," +
+                    "    marca TEXT NOT NULL," +
+                    "    submarca TEXT," +
+                    "    modelo TEXT NOT NULL," +
+                    "    tipo TEXT NOT NULL," +
+                    "    año INTEGER NOT NULL," +
+                    "    num_serie TEXT NOT NULL," +
+                    "    capacidad INTEGER NOT NULL," +
+                    "    num_compart INTEGER," +
+                    "    cap_compart INTEGER," +
+                    "    aseguradora TEXT," +
+                    "    num_poliza TEXT," +
+                    "    vencimiento_poliza TEXT," +
+                    "    municipio TEXT NOT NULL," +
+                    "    estado TEXT NOT NULL," +
+                    "    num_corralon TEXT NOT NULL," +
+                    "    municipio_corralon TEXT NOT NULL," +
+                    "    PRIMARY KEY (id,num_serie)" +
+                    ");");
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -47,13 +67,45 @@ public class DatabaseConnection {
      * @param año Año de fabricación del camión
      * @return Código de estátus de la inserción
      */
-    public static int insertCamion(String id,String marca,String modelo,int año){
+    public static int insertCamion(
+            String id,
+            int tipoRegistro,
+            String marca,
+            String submarca,
+            String modelo,
+            String tipo,
+            int año,
+            String numSerie,
+            int capacidad,
+            int numCompart,
+            int capCompart,
+            String aseguradora,
+            String numPoliza,
+            String vencPoliza,
+            String municipio,
+            String estado,
+            String numCorralon,
+            String munCorralon){
         try {
-            PreparedStatement st = conn.prepareStatement("INSERT INTO camiones values(?,?,?,?)");
+            PreparedStatement st = conn.prepareStatement("INSERT INTO camiones values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             st.setString(1,id);
-            st.setString(2,marca);
-            st.setString(3,modelo);
-            st.setInt(4,año);
+            st.setInt(2,tipoRegistro);
+            st.setString(3,marca);
+            st.setString(4,submarca);
+            st.setString(5,modelo);
+            st.setString(6,tipo);
+            st.setInt(7,año);
+            st.setString(8,numSerie);
+            st.setInt(9,capacidad);
+            st.setInt(10,numCompart);
+            st.setInt(11,capCompart);
+            st.setString(12,aseguradora);
+            st.setString(13,numPoliza);
+            st.setString(14,vencPoliza);
+            st.setString(15,municipio);
+            st.setString(16,estado);
+            st.setString(17,numCorralon);
+            st.setString(18,munCorralon);
             st.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -63,9 +115,9 @@ public class DatabaseConnection {
     }
 
     /**
-     * Genéra un <it>ArrayList</it> de objetos <it>Camion</it> a partir de todos los registros
+     * Genéra un ArrayList de objetos Camion a partir de todos los registros
      * que se tengan en la base de datos
-     * @return <it>ArrayList</it> de objetos <it>Camion</it>
+     * @return ArrayList de objetos Camion
      */
     public static ArrayList<Camion> getAllCamiones(){
         ArrayList<Camion> camiones = new ArrayList<Camion>();
