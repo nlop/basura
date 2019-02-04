@@ -16,7 +16,7 @@
             </div>
             <div class="alert alert-danger" th:if="${status} neq 0">
                 <h4 class="alert-heading">Error al agregar camion</h4>
-                <p th:text="|Codigo de error:${status}|">Error</p>
+                <p th:text="|Error:${error}|">Error</p>
                 <hr>
                 <a href="/"><p class="mb-0">Regresar al inicio</p></a>
             </div>

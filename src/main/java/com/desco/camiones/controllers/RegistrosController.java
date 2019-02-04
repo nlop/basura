@@ -58,6 +58,13 @@ public class RegistrosController {
             @RequestParam String numCorralon,
             @RequestParam String munCorralon,Model model){
         //En esta parte se podrían validar los datos antes de ingresarlos a la base de datos
+        if(capacidad <= 0){
+            //Código de estátus diferente de 0 para que pueda marcarlo como error en la plantilla
+            model.addAttribute("status",-1);
+           //Texto que se muestra al regresar la vista
+            model.addAttribute("error","La capacidad del camión debe de ser mayor a 0");
+            return "insertStatus";
+        }
         int status = DatabaseConnection.insertCamion(id,tipoId,marca,submarca,modelo,tipo,año,numSerie,capacidad,numCompart,capCompart,aseguradora,numPoliza,vencPoliza,municipio,estado,numCorralon,munCorralon);
         /**System.out.print("id:"+id+"\nmarca:"+marca+"\nsubmarca:"+submarca+"\ntipo:"+tipo+"\nmodelo:"+modelo+"\naño:"+año+"\nnumSerie:"+numSerie
         +"\ncapacidad:"+capacidad+"\nnumCompart:"+numCompart+"\ncapCompart:"+capCompart+"\naseguradora:"+aseguradora+"\nnumPoliza:"+numPoliza
