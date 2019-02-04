@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Camiones</title>
+</head>
+<body>
+<div th:each="v : ${vehiculos}">
+    <h1 th:text="|Marca ${v.marca} Modelo:${v.modelo} Año:${v.anio}|">Modelo</h1>
+    <h2 th:text="|Número de Serie ${v.numSerie} ID:${v.id}|">Marca</h2>
+    <div th:switch="${v.tipoRegistro}">
+        <p th:case="1">Número económico</p>
+        <p th:case="2">Número temporal</p>
+        <p th:case="3">Placas</p>
+    </div>
+    <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|">Eliminar</a>
+</div>
+
+
+</body>
+</html>

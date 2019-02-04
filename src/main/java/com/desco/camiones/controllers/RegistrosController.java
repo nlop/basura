@@ -1,10 +1,14 @@
 package com.desco.camiones.controllers;
 
 import com.desco.camiones.db.DatabaseConnection;
+import com.desco.camiones.models.Vehiculo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -71,5 +75,18 @@ public class RegistrosController {
                 +"\nvencPoliza:"+vencPoliza+"\nmunicipio:"+municipio+"\nestado:"+estado+"\ncorralon:"+corralon+"\nmunCorralon:"+munCorralon);**/
         model.addAttribute("status",status);
         return "insertStatus";
+    }
+
+    @GetMapping("/camiones")
+    public String allCamiones(Model model){
+        ArrayList<Vehiculo> vehiculos = DatabaseConnection.getAllCamiones();
+        model.addAttribute("vehiculos",vehiculos);
+        return "camiones";
+    }
+    @GetMapping("/delVehiculo")
+    public String delCamion(@RequestParam String numSerie,@RequestParam String id,Model model){
+        int status = DatabaseConnection.delVehiculo(numSerie,id);
+        model.addAttribute("status",status);
+        return "delStatus";
     }
 }
