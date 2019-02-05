@@ -5,15 +5,36 @@
     <title>Buscar</title>
 </head>
 <body>
-    <h1>Buscar vehiculos</h1>
-    <form action="/viewVehiculo" method="get">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!--<form action="/viewVehiculo" method="get">
         <label for="idInput">Identificador del Vehiculo (Num. Económico,Num. Temporal,Placas)</label>
         <input type="text" name="id" placeholder="Identificador" id="idInput">
         <label for="serieInput">Número de Serie</label>
         <input type="text" name="numSerie" placeholder="Num. de Serie" id="serieInput">
         <input type="text" name="edit" value="0" hidden readonly>
         <button type="submit">Buscar</button>
-    </form>
-<a href="/camiones">Todos los Vehiculos</a>
+    </form>-->
+
+<div class="card">
+    <h5 class="card-header">Busqueda</h5>
+    <div class="card-body">
+        <h5 class="card-title">Buscar camiones registrados</h5>
+        <form action="/viewVehiculo" method="get">
+            <div class="form-group">
+                <label for="idInput">Identificador del Vehiculo</label>
+                <input type="text" name="id" class="form-control" id="idInput"  placeholder="(Num. Económico,Num. Temporal,Placas)">
+            </div>
+            <div class="form-group">
+                <label or="serieInput">Número de serie</label>
+                <input type="text" class="form-control" name="numSerie"  placeholder="Num. de Serie" id="serieInput">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <a href="/camiones" class="btn btn-primary">Todos los Vehiculos</a>
+        </form>
+    </div>
+</div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
