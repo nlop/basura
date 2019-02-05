@@ -39,15 +39,15 @@ public class RegistrosController {
      */
     @PostMapping("/registroCamion")
     public String registrarCamion(
-            @RequestParam String id,
+            @RequestParam (required = true)String id,
             @RequestParam int tipoId,
             @RequestParam String marca,
             @RequestParam(required = false,defaultValue = "") String submarca,
             @RequestParam String tipo,
             @RequestParam String modelo,
-            @RequestParam int año,
+            @RequestParam (required = false, defaultValue = "1999")int año,
             @RequestParam String numSerie,
-            @RequestParam int capacidad,
+            @RequestParam (required = false, defaultValue = "1000")int capacidad,
             @RequestParam(required = false,defaultValue = "0") int numCompart,
             @RequestParam(required = false,defaultValue = "0") int capCompart,
             @RequestParam(required = false) String aseguradora,
@@ -58,6 +58,7 @@ public class RegistrosController {
             @RequestParam String numCorralon,
             @RequestParam String munCorralon,Model model){
         //En esta parte se podrían validar los datos antes de ingresarlos a la base de datos
+
         if(capacidad <= 0){
             //Código de estátus diferente de 0 para que pueda marcarlo como error en la plantilla
             model.addAttribute("status",-1);
@@ -65,6 +66,23 @@ public class RegistrosController {
             model.addAttribute("error","La capacidad del camión debe de ser mayor a 0");
             return "insertStatus";
         }
+        //Validar año
+        if(año<1886){
+            model.addAttribute("status",-1);
+            model.addAttribute("error"," Karl Friedrich Benz inventó el primer automóvil con motor en 1886, el año defabricación debe de ser posterior a este.");
+            return "insertStatus";
+        }else{
+            if(año>2019){
+                model.addAttribute("status",-1);
+                model.addAttribute("error","El año de fabricación debe de ser inferior al de la actualidad.");
+                return "insertStatus";
+            }
+        }
+        if (id.length()<1 || id.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","El identificador no puede estar vacio");
+        }
+
         int status = DatabaseConnection.insertCamion(id,tipoId,marca,submarca,modelo,tipo,año,numSerie,capacidad,numCompart,capCompart,aseguradora,numPoliza,vencPoliza,municipio,estado,numCorralon,munCorralon);
         /**System.out.print("id:"+id+"\nmarca:"+marca+"\nsubmarca:"+submarca+"\ntipo:"+tipo+"\nmodelo:"+modelo+"\naño:"+año+"\nnumSerie:"+numSerie
         +"\ncapacidad:"+capacidad+"\nnumCompart:"+numCompart+"\ncapCompart:"+capCompart+"\naseguradora:"+aseguradora+"\nnumPoliza:"+numPoliza
