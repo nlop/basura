@@ -5,6 +5,38 @@
     <title>Camiones</title>
 </head>
 <body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Número de serie</th>
+        <th scope="col">Tipo de Registro</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Año</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="v : ${vehiculos}">
+        <th th:text = "|ID:${v.id}|">ID</th>
+        <td th:text = "|Número de Serie ${v.numSerie}|"></td>
+        <div th:switch="|${v.tipoRegistro}|">
+            <td th:case="1">Número económico</td>
+            <td th:case="2">Número temporal</td>
+            <td th:case="3">Placas</td>
+        </div>
+        <td th:text = "|Marca ${v.marca}|"></td>
+        <td th:text = "|Modelo:${v.modelo}|"></td>
+        <td th:text = "|Año:${v.anio}|"></td>
+        <td scope="col"><a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|" class="btn btn-primary">Eliminar</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<!--
 <div th:each="v : ${vehiculos}">
     <h1 th:text="|Marca ${v.marca} Modelo:${v.modelo} Año:${v.anio}|">Modelo</h1>
     <h2 th:text="|Número de Serie ${v.numSerie} ID:${v.id}|">Marca</h2>
@@ -13,9 +45,9 @@
         <p th:case="2">Número temporal</p>
         <p th:case="3">Placas</p>
     </div>
-    <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|">Eliminar</a>
+    <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|" class="btn btn-primary">Eliminar</a>
 </div>
-
-
+-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
