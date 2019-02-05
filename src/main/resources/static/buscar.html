@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar</title>
+</head>
+<body>
+    <h1>Buscar vehiculos</h1>
+    <form action="/viewVehiculo" method="get">
+        <label for="idInput">Identificador del Vehiculo (Num. Económico,Num. Temporal,Placas)</label>
+        <input type="text" name="id" placeholder="Identificador" id="idInput">
+        <label for="serieInput">Número de Serie</label>
+        <input type="text" name="numSerie" placeholder="Num. de Serie" id="serieInput">
+        <input type="text" name="edit" value="0" hidden readonly>
+        <button type="submit">Buscar</button>
+    </form>
+<a href="/camiones">Todos los Vehiculos</a>
+</body>
+</html>

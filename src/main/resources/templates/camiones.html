@@ -13,6 +13,8 @@
         <p th:case="2">Número temporal</p>
         <p th:case="3">Placas</p>
     </div>
+    <a th:attr="href=|/viewVehiculo?id=${v.id}&numSerie=${v.numSerie}&edit=0|">Ver</a>
+    <a th:attr="href=|/viewVehiculo?id=${v.id}&numSerie=${v.numSerie}&edit=1|">Editar</a>
     <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|">Eliminar</a>
 </div>
 

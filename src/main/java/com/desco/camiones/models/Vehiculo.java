@@ -19,7 +19,27 @@ public class Vehiculo {
     private String estado;
     private String numCorralon;
     private String munCorralon;
+    public Vehiculo(){
+        this.id = "";
+        this.tipoRegistro = 0;
+        this.marca = "";
+        this.submarca = "";
+        this.modelo = "";
+        this.tipo = "";
+        this.anio = 0;
+        this.numSerie = "";
+        this.capacidad = 0;
+        this.numCompart = 0;
+        this.capCompart = 0;
+        this.aseguradora = "";
+        this.numPoliza = "";
+        this.vencPoliza = "";
+        this.municipio = "";
+        this.estado = "";
+        this.numCorralon = "";
+        this.munCorralon = "";
 
+    }
     public Vehiculo(String id, int tipoRegistro, String marca, String submarca, String modelo, String tipo, int año, String numSerie, int capacidad, int numCompart, int capCompart, String aseguradora, String numPoliza, String vencPoliza, String municipio, String estado, String numCorralon, String munCorralon) {
         this.id = id;
         this.tipoRegistro = tipoRegistro;
