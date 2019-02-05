@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 
 
@@ -49,9 +50,9 @@ public class RegistrosController {
             @RequestParam(required = false,defaultValue = "") String submarca,
             @RequestParam String tipo,
             @RequestParam String modelo,
-            @RequestParam (required = false, defaultValue = "1999")int año,
+            @RequestParam(defaultValue = "1999")int año,
             @RequestParam String numSerie,
-            @RequestParam (required = false, defaultValue = "1000")int capacidad,
+            @RequestParam(defaultValue = "-1")@NotNull int capacidad,
             @RequestParam(required = false,defaultValue = "0") int numCompart,
             @RequestParam(required = false,defaultValue = "0") int capCompart,
             @RequestParam(required = false) String aseguradora,
@@ -67,8 +68,13 @@ public class RegistrosController {
             //Código de estátus diferente de 0 para que pueda marcarlo como error en la plantilla
             model.addAttribute("status",-1);
            //Texto que se muestra al regresar la vista
-            model.addAttribute("error","La capacidad del camión debe de ser mayor a 0");
+            model.addAttribute("error","Se debe tener una capacidad de carga y esta debe de ser mayor a 0");
             return "insertStatus";
+        }
+        else{
+            if (capacidad==-1){
+                model.addAttribute("error","La capacidad debe de ser mayor a 0");
+            }
         }
         //Validar año
         if(año<1886){
@@ -85,6 +91,41 @@ public class RegistrosController {
         if (id.length()<1 || id.equals("")){
             model.addAttribute("status",-1);
             model.addAttribute("error","El identificador no puede estar vacio");
+            return "insertStatus";
+        }
+
+        if (marca.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","Se debe especificar un modelo");
+            return "insertStatus";
+        }
+
+        if (modelo.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","Se debe especificar un modelo");
+            return "insertStatus";
+        }
+
+        if (tipo.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","Se debe especificar un tipo");
+            return "insertStatus";
+        }
+
+        if (estado.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","Se debe especificar un estado");
+            return "insertStatus";
+        }
+        if (numCorralon.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","Se debe especificar un número de corralon");
+            return "insertStatus";
+        }
+        if (munCorralon.equals("")){
+            model.addAttribute("status",-1);
+            model.addAttribute("error","Se debe especificar un el municipio donde su ubica el corralon");
+            return "insertStatus";
         }
 
         int status = DatabaseConnection.insertCamion(id,tipoId,marca,submarca,modelo,tipo,año,numSerie,capacidad,numCompart,capCompart,aseguradora,numPoliza,vencPoliza,municipio,estado,numCorralon,munCorralon);
