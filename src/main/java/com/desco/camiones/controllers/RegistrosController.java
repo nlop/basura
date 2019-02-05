@@ -128,10 +128,25 @@ public class RegistrosController {
             return "insertStatus";
         }
 
-        int status = DatabaseConnection.insertCamion(id,tipoId,marca,submarca,modelo,tipo,año,numSerie,capacidad,numCompart,capCompart,aseguradora,numPoliza,vencPoliza,municipio,estado,numCorralon,munCorralon);
-        /**System.out.print("id:"+id+"\nmarca:"+marca+"\nsubmarca:"+submarca+"\ntipo:"+tipo+"\nmodelo:"+modelo+"\naño:"+año+"\nnumSerie:"+numSerie
-        +"\ncapacidad:"+capacidad+"\nnumCompart:"+numCompart+"\ncapCompart:"+capCompart+"\naseguradora:"+aseguradora+"\nnumPoliza:"+numPoliza
-                +"\nvencPoliza:"+vencPoliza+"\nmunicipio:"+municipio+"\nestado:"+estado+"\ncorralon:"+corralon+"\nmunCorralon:"+munCorralon);**/
+        int status = DatabaseConnection.insertCamion(
+                id.toUpperCase(),
+                tipoId,
+                marca.toUpperCase(),
+                submarca.toUpperCase(),
+                modelo.toUpperCase(),
+                tipo,
+                año,
+                numSerie.toUpperCase(),
+                capacidad,
+                numCompart,
+                capCompart,
+                aseguradora.toUpperCase(),
+                numPoliza.toUpperCase(),
+                vencPoliza,
+                municipio.toUpperCase(),
+                estado.toUpperCase(),
+                numCorralon.toUpperCase(),
+                munCorralon.toUpperCase());
         model.addAttribute("status",status);
         return "insertStatus";
     }

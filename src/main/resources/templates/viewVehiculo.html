@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Camion</title>
+    <title th:title="${edit} ? 'Editar Vehículo' : 'Ver Vehículo'">Editar Camion</title>
 </head>
 <body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -38,72 +38,6 @@
 <div class="container">
     <div class="row">
         <div class="mx-auto col-10">
-            <!-- <form th:method="(${edit} eq 1)?'post'" th:action="(${edit} eq 1)?'\updVehiculo'">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col">
-                        <label for="idInput">Identificador</label>
-
-                        <span class="badge badge-success" name="tipoId" th:if="${v.tipoRegistro} eq 1">Número Económico</span>
-                        <span class="badge badge-primary" name="tipoId" th:if="${v.tipoRegistro} eq 2">Número Temporal</span>
-                        <span class="badge badge-secondary" name="tipoId" th:if="${v.tipoRegistro} eq 3">Número Placas</span>
-
-                        <input type="text" class="form-control" id="idInput" placeholder="Identificador" name="id" th:value="${v.id}" readonly>
-
-                        <input type="text" name="tipoId" th:value="${v.tipoRegistro}" hidden readonly>
-                    </div>
-                    <div class="col">
-                        <label for="numSerieInput">Número de Serie</label>
-                        <input type="text" th:value="${v.numSerie}"class="form-control" id="numSerieInput" name="numSerie" readonly>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <label for="marcaInput">Marca</label>
-                        <input type="text" class="form-control" id="marcaInput" th:value="${v.marca}" th:readonly="!${edit}" placeholder="Marca" name="marca" >
-                    </div>
-                    <div class="col">
-                        <label for="submarcaInput">Submarca</label>
-                        <input type="text" class="form-control" th:value="${v.submarca}" th:readonly="!${edit}" id="submarcaInput" placeholder="Submarca" name="submarca" >
-                    </div>
-                </div>
-                <label for="modeloInput">Modelo</label>
-                <input type="text" class="form-control" id="modeloInput" placeholder="Modelo" th:value="${v.modelo}" th:readonly="!${edit}"
-                       name="modelo" >
-                <label for="tipoVehiculoInput">Tipo Vehiculo</label>
-                <select class="form-control" id="tipoVehiculoInput" th:readonly="!${edit}" name="tipo">
-                    <option th:selected="${v.tipo} eq 'camion'" value="camion">Camion</option>
-                    <option th:selected="${v.tipo} eq 'camioneta'" value="camioneta">Camioneta</option>
-                </select>
-                <label for="añoInput">Año de Fabricación</label>
-                <input type="number" class="form-control" id="añoInput" placeholder="Año" th:value="${v.anio}" th:readonly="!${edit}" name="año" >
-                <label for="capacidadInput">Capacidad de Carga(Kilogramos)</label>
-                <input type="number" class="form-control" id="capacidadInput" th:value="${v.capacidad}" th:readonly="!${edit}"
-                       placeholder="Capacidad(KG)"name="capacidad" >
-                <label for="numCompartInput">Número de Compartimientos</label>
-                <input type="number" class="form-control" id="numCompartInput" th:value="${v.numCompart}" th:readonly="!${edit}"
-                       placeholder="Num. Compartimientos" name="numCompart" >
-                <label for="capCompartInput">Capacidad de Compartimientos</label>
-                <input type="number" class="form-control" id="capCompartInput" th:value="${v.capCompart}" th:readonly="!${edit}"
-                       placeholder="Cap. Compartimientos" name="capCompart" >
-                <label for="aseguradoraInput">Aseguradora</label>
-                <input type="text" class="form-control" id="aseguradoraInput" placeholder="Aseguradora" name="aseguradora" th:value="${v.aseguradora}" th:readonly="!${edit}" >
-                <label for="polizaInput">Número de Póliza</label>
-                <input type="text" class="form-control" id="polizaInput" name="numPoliza" th:value="${v.numPoliza}" th:readonly="!${edit}" >
-                <label for="vencPolizaInput">Vencimiento de la Póliza</label>
-                <input type="date" class="form-control" id="vencPolizaInput" name="vencPoliza" th:value="${v.vencPoliza}" th:readonly="!${edit}">
-                <label for="municipioInput">Municipio</label>
-                <input type="text" class="form-control" id="municipioInput" name="municipio" th:value="${v.municipio}" th:readonly="!${edit}">
-                <label for="estadoInput">Estado</label>
-                <input type="text" class="form-control" id="estadoInput" name="estado" th:value="${v.estado}" th:readonly="!${edit}">
-                <label for="corralonInput">Número de Corralon</label>
-                <input type="text" class="form-control" id="corralonInput" name="numCorralon" th:value="${v.numCorralon}" th:readonly="!${edit}">
-                <label for="munCorralonInput">Municipio del Corralon</label>
-                <input type="text" class="form-control" id="munCorralonInput" name="munCorralon" th:value="${v.munCorralon}" th:readonly="!${edit}">
-            </div>
-            <button th:if="${edit}" type="submit" class="btn btn-primary btn-lg btn-block botton-buttom">Modificar</button>
-            </form> -->
             <form th:method="(${edit} eq 1)?'post'" th:action="(${edit} eq 1)?'\updVehiculo'">
                 <div class="form-row">
                     <div class="col-md-6">
@@ -125,17 +59,17 @@
                 <div class="form-row form-group">
                     <div class="col">
                         <label for="marcaInput">Marca</label>
-                        <input type="text" class="form-control" id="marcaInput" th:value="${v.marca}" th:readonly="!${edit}" placeholder="Marca" name="marca" >
+                        <input type="text" class="form-control text-uppercase" id="marcaInput" th:value="${v.marca}" th:readonly="!${edit}" placeholder="Marca" name="marca" >
                     </div>
                     <div class="col">
                         <label for="submarcaInput">Submarca</label>
-                        <input type="text" class="form-control" th:value="${v.submarca}" th:readonly="!${edit}" id="submarcaInput" placeholder="Submarca" name="submarca" >
+                        <input type="text" class="form-control text-uppercase" th:value="${v.submarca}" th:readonly="!${edit}" id="submarcaInput" placeholder="Submarca" name="submarca" >
                     </div>
                 </div>
                 <div class="form-row form-group">
                     <div class="col-md-7">
                         <label for="modeloInput">Modelo</label>
-                        <input type="text" class="form-control" id="modeloInput" placeholder="Modelo" th:value="${v.modelo}" th:readonly="!${edit}" name="modelo" >
+                        <input type="text" class="form-control text-uppercase" id="modeloInput" placeholder="Modelo" th:value="${v.modelo}" th:readonly="!${edit}" name="modelo" >
                     </div>
                     <div class="col-md-3">
                         <label for="tipoVehiculoInput">Tipo Vehiculo</label>
@@ -166,11 +100,11 @@
                 <div class="form-row form-group">
                     <div class="col-md-4">
                         <label for="aseguradoraInput">Aseguradora</label>
-                        <input type="text" class="form-control" id="aseguradoraInput" placeholder="Aseguradora" name="aseguradora" th:value="${v.aseguradora}" th:readonly="!${edit}" >
+                        <input type="text" class="form-control text-uppercase" id="aseguradoraInput" placeholder="Aseguradora" name="aseguradora" th:value="${v.aseguradora}" th:readonly="!${edit}" >
                     </div>
                     <div class="col-md-4">
                         <label for="polizaInput">Número de Póliza</label>
-                        <input type="text" class="form-control" id="polizaInput" name="numPoliza" th:value="${v.numPoliza}" th:readonly="!${edit}" >
+                        <input type="text" class="form-control text-uppercase" id="polizaInput" name="numPoliza" th:value="${v.numPoliza}" th:readonly="!${edit}" placeholder="Número de Póliza" >
                     </div>
                     <div class="col-md-4">
                         <label for="vencPolizaInput">Vencimiento de la Póliza</label>
@@ -180,21 +114,21 @@
                 <div class="form-row form-group">
                     <div class="col-md-6">
                         <label for="municipioInput">Municipio</label>
-                        <input type="text" class="form-control" id="municipioInput" name="municipio" th:value="${v.municipio}" th:readonly="!${edit}">
+                        <input type="text" class="form-control text-uppercase" id="municipioInput" name="municipio" th:value="${v.municipio}" th:readonly="!${edit}">
                     </div>
                     <div class="col-md-6">
                         <label for="estadoInput">Estado</label>
-                        <input type="text" class="form-control" id="estadoInput" name="estado" th:value="${v.estado}" th:readonly="!${edit}">
+                        <input type="text" class="form-control text-uppercase" id="estadoInput" name="estado" th:value="${v.estado}" th:readonly="!${edit}">
                     </div>
                 </div>
                 <div class="form-row form-group">
                     <div class="col-md-6">
                         <label for="corralonInput">Número de Corralon</label>
-                        <input type="text" class="form-control" id="corralonInput" name="numCorralon" th:value="${v.numCorralon}" th:readonly="!${edit}">
+                        <input type="text" class="form-control text-uppercase" id="corralonInput" name="numCorralon" th:value="${v.numCorralon}" th:readonly="!${edit}">
                     </div>
                     <div class="col-md-6">
                         <label for="munCorralonInput">Municipio del Corralon</label>
-                        <input type="text" class="form-control" id="munCorralonInput" name="munCorralon" th:value="${v.munCorralon}" th:readonly="!${edit}">
+                        <input type="text" class="form-control text-uppercase" id="munCorralonInput" name="munCorralon" th:value="${v.munCorralon}" th:readonly="!${edit}">
                     </div>
                 </div>
                 <button th:if="${edit}" type="submit" class="btn btn-primary btn-lg btn-block botton-buttom">Ingresar</button>
