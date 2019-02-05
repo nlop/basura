@@ -1,87 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Registrar Camion</title>
-    </head>
-    <body>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        <div class="container">
-            <div class="row">
-                <div class="mx-auto col-10">
-                    <form method="post" action="/registroCamion">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="idInput">Identificador</label>
-                                    <input type="text" class="form-control" id="idInput" placeholder="Identificador" name="id" >
-                                </div>
-                                    <div class="col">
-                                        <label for="tipoIdInput">Tipo ID</label>
-                                        <select class="form-control" id="tipoIdInput" name="tipoId">
-                                            <option value="1">Número Económico</option>
-                                            <option value="2">Número Temporal</option>
-                                            <option value="3">Número Placas</option>
-                                        </select>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="marcaInput">Marca</label>
-                                    <input type="text" class="form-control" id="marcaInput" placeholder="Marca" name="marca" >
-                                  </div>
-                                <div class="col">
-                                    <label for="submarcaInput">Submarca</label>
-                                    <input type="text" class="form-control"
-                                    id="submarcaInput" placeholder="Submarca" name="submarca" >
-                                 </div>
-                            </div>
-                            <label for="modeloInput">Modelo</label>
-                            <input type="text" class="form-control" id="modeloInput" placeholder="Modelo"
-                            name="modelo" >
-                            <label for="tipoVehiculoInput">Tipo Vehiculo</label>
-                            <select class="form-control" id="tipoVehiculoInput" name="tipo">
-                                <option value="camion">Camion</option>
-                                <option value="camioneta">Camioneta</option>
-                            </select>
-                            <label for="añoInput">Año de Fabricación</label>
-                            <input type="number" class="form-control" id="añoInput" placeholder="Año"
-                            name="año" >
-                            <label for="numSerieInput">Número de Serie</label>
-                            <input type="text" class="form-control" id="numSerieInput"
-                                                                    placeholder="Número de Serie"
-                            name="numSerie" >
-                            <label for="capacidadInput">Capacidad de Carga(Kilogramos)</label>
-                            <input type="number" class="form-control" id="capacidadInput"
-                                                                    placeholder="Capacidad(Kg)"name="capacidad" min="1" max="40000">
-                            <label for="numCompartInput">Número de Compartimientos</label>
-                            <input type="number" class="form-control" id="numCompartInput"
-                                                                    placeholder="Num. Compartimientos" name="numCompart" min="1" max="40" >
-                            <label for="capCompartInput">Capacidad de Compartimientos</label>
-                            <input type="number" class="form-control" id="capCompartInput"
-                                                                    placeholder="Cap. Compartimientos(Kg)" name="capCompart" min="1" max="1000">
-                            <label for="aseguradoraInput">Aseguradora</label>
-                            <input type="text" class="form-control" id="aseguradoraInput" placeholder="Aseguradora" name="aseguradora" >
-                            <label for="polizaInput">Número de Póliza</label>
-                            <input type="text" class="form-control" id="polizaInput" name="numPoliza" >
-                            <label for="vencPolizaInput">Vencimiento de la Póliza</label>
-                            <input type="date" class="form-control" id="vencPolizaInput" name="vencPoliza" >
-                            <label for="municipioInput">municipio</label>
-                            <input type="text" class="form-control" id="municipioInput" name="municipio" >
-                            <label for="estadoInput">Estado</label>
-                            <input type="text" class="form-control" id="estadoInput" name="estado" >
-                            <label for="corralonInput">Número de Corralon</label>
-                            <input type="text" class="form-control" id="corralonInput" name="numCorralon" >
-                            <label for="munCorralonInput">munCorralon</label>
-                            <input type="text" class="form-control" id="munCorralonInput" name="munCorralon" >
-                        </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Ingresar</button>
-                    </form>
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Camion</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<style>
+    .titulo{
+        font-size:1.2rem;
+        padding-left:2em
+    }
+    .arrow{
+        font-size:1.2em;
+    }
+    .button-bottom{
+        margin-bottom:3em;
+    }
+    a:link{
+        text-decoration:none;
+    }
+    a:visited{
+        text-decoration:none;
+    }
+    a:hover{
+        text-decoration:none;
+    }
+    a:active{
+        text-decoration:none;
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="/" class="fa fa-arrow-left arrow" aria-hidden="true"></a>
+    <a class="nav-item titulo">Registrar Vehículo</a>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="mx-auto col-10">
+            <form method="post" action="/registroCamion">
+                <div class="form-row">
+                    <div class="col-md-9">
+                        <label for="idInput">Identificador</label>
+                        <input type="text" class="form-control text-uppercase" id="idInput" placeholder="Identificador" name="id" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipoIdInput">Tipo ID</label>
+                        <select class="form-control"  id="tipoIdInput" name="tipoId">
+                            <option value="1">NÚMERO ECONÓMICO</option>
+                            <option value="2">NÚMERO TEMPORAL</option>
+                            <option value="3">PLACAS</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="numSerieInput">Número de Serie</label>
+                    <input type="text" class="form-control text-uppercase" id="numSerieInput" placeholder="Número de Serie"  name="numSerie" required>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col">
+                        <label for="marcaInput">Marca</label>
+                        <input type="text" class="form-control text-uppercase" id="marcaInput" placeholder="Marca" name="marca" required>
+                    </div>
+                    <div class="col">
+                        <label for="submarcaInput">Submarca</label>
+                        <input type="text" class="form-control text-uppercase" id="submarcaInput" placeholder="Submarca" name="submarca">
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-md-7">
+                        <label for="modeloInput">Modelo</label>
+                        <input type="text" class="form-control text-uppercase" id="modeloInput" placeholder="Modelo" name="modelo" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tipoVehiculoInput">Tipo Vehiculo</label>
+                        <select class="form-control" id="tipoVehiculoInput" name="tipo">
+                            <option value="CAMION">Camion</option>
+                            <option value="CAMIONETA">Camioneta</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="añoInput">Año</label>
+                        <input type="number" class="form-control text-uppercase" id="añoInput" placeholder="Año" name="año" required>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                     <div class="col-md-4">
+                        <label for="capacidadInput">Capacidad de Carga(Kilogramos)</label>
+                        <input type="number" class="form-control" id="capacidadInput" placeholder="Capacidad(Kg)"name="capacidad" min="1" required>
+                     </div>
+                    <div class="col-md-4">
+                        <label for="numCompartInput">Número de Compartimientos</label>
+                        <input type="number" class="form-control" id="numCompartInput" placeholder="Num. Compartimientos" name="numCompart" min="1" max="40" >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="capCompartInput">Capacidad de Compartimientos</label>
+                        <input type="number" class="form-control" id="capCompartInput"
+                               placeholder="Cap. Compartimientos(Kg)" name="capCompart" min="1" max="1000">
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-md-4">
+                        <label for="aseguradoraInput">Aseguradora</label>
+                        <input type="text" class="form-control text-uppercase" id="aseguradoraInput" placeholder="Aseguradora" name="aseguradora">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="polizaInput">Número de Póliza</label>
+                        <input type="text" class="form-control text-uppercase" id="polizaInput" name="numPoliza" placeholder="Número de Póliza" >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="vencPolizaInput">Vencimiento de la Póliza</label>
+                        <input type="date" class="form-control text-uppercase" id="vencPolizaInput" name="vencPoliza">
+                    </div>
+                </div>
+               <div class="form-row form-group">
+                   <div class="col-md-6">
+                        <label for="municipioInput">Municipio</label>
+                        <input type="text" class="form-control text-uppercase" id="municipioInput" name="municipio" placeholder="Municipio" required>
+                   </div>
+                   <div class="col-md-6">
+                        <label for="estadoInput">Estado</label>
+                        <input type="text" class="form-control text-uppercase" id="estadoInput" name="estado" placeholder="Estado" required>
+                   </div>
+               </div>
+                <div class="form-row form-group">
+                    <div class="col-md-6">
+                        <label for="corralonInput">Número de Corralon</label>
+                        <input type="text" class="form-control text-uppercase" id="corralonInput" name="numCorralon" placeholder="Número de Corralon" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="munCorralonInput">Municipio del Corralon</label>
+                        <input type="text" class="form-control text-uppercase" id="munCorralonInput" name="munCorralon" placeholder="Municipio del Corralon" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block button-bottom">Ingresar</button>
+            </form>
         </div>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    </body>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
 </html>

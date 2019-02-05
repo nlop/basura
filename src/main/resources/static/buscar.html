@@ -6,35 +6,49 @@
 </head>
 <body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <!--<form action="/viewVehiculo" method="get">
-        <label for="idInput">Identificador del Vehiculo (Num. Económico,Num. Temporal,Placas)</label>
-        <input type="text" name="id" placeholder="Identificador" id="idInput">
-        <label for="serieInput">Número de Serie</label>
-        <input type="text" name="numSerie" placeholder="Num. de Serie" id="serieInput">
-        <input type="text" name="edit" value="0" hidden readonly>
-        <button type="submit">Buscar</button>
-    </form>-->
-
-<div class="card">
-    <h5 class="card-header">Busqueda</h5>
-    <div class="card-body">
-        <h5 class="card-title">Buscar camiones registrados</h5>
-        <form action="/viewVehiculo" method="get">
-            <div class="form-group">
-                <label for="idInput">Identificador del Vehiculo</label>
-                <input type="text" name="id" class="form-control" id="idInput"  placeholder="(Num. Económico,Num. Temporal,Placas)">
-            </div>
-            <div class="form-group">
-                <label or="serieInput">Número de serie</label>
-                <input type="text" class="form-control" name="numSerie"  placeholder="Num. de Serie" id="serieInput">
-            </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="/camiones" class="btn btn-primary">Todos los Vehiculos</a>
-        </form>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<style>
+a:link{
+    text-decoration:none;
+}
+a:visited{
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:none;
+}
+a:active{
+    text-decoration:none;
+}
+</style>
+<div class="container">
+    <div class="card">
+        <h5 class="card-header">
+            <a href="/" class="fa fa-arrow-left" aria-hidden="true"></a>
+            Busqueda</h5>
+        <div class="card-body">
+            <h5 class="card-title">Buscar camiones registrados</h5>
+            <form action="/viewVehiculo" method="get">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label for="idInput">Identificador del Vehiculo</label>
+                            <input type="text" name="id" class="form-control" id="idInput"  placeholder="Núm. Económico,Núm. Temporal,Placas" required>
+                        </div>
+                        <div class="col">
+                            <label or="serieInput">Número de serie</label>
+                            <input type="text" class="form-control" name="numSerie"  placeholder="Núm. de Serie" id="serieInput" required>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" name="edit" value="0" hidden readonly>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <a href="/camiones" class="btn btn-info">Todos los Vehiculos</a>
+            </form>
+        </div>
     </div>
 </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
