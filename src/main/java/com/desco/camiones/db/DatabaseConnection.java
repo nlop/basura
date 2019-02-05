@@ -123,6 +123,7 @@ public class DatabaseConnection {
             st.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
+            System.out.println("This error " + e.getErrorCode());
             return e.getErrorCode();
         }
         return 0;
