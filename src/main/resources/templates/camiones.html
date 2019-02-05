@@ -6,7 +6,19 @@
 </head>
 <body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+<div th:each="v : ${vehiculos}">
+    <h1 th:text="|Marca ${v.marca} Modelo:${v.modelo} Año:${v.anio}|">Modelo</h1>
+    <h2 th:text="|Número de Serie ${v.numSerie} ID:${v.id}|">Marca</h2>
+    <div th:switch="${v.tipoRegistro}">
+        <p th:case="1">Número económico</p>
+        <p th:case="2">Número temporal</p>
+        <p th:case="3">Placas</p>
+    </div>
+    <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|" class="btn btn-primary">Eliminar</a>
+    <a th:attr="href=|/viewVehiculo?id=${v.id}&numSerie=${v.numSerie}&edit=0|">Ver</a>
+    <a th:attr="href=|/viewVehiculo?id=${v.id}&numSerie=${v.numSerie}&edit=1|">Editar</a>
+    <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|">Eliminar</a>
+</div>
 <table class="table table-hover">
     <thead>
     <tr>
@@ -36,17 +48,7 @@
     </tbody>
 </table>
 
-<!--
-<div th:each="v : ${vehiculos}">
-    <h1 th:text="|Marca ${v.marca} Modelo:${v.modelo} Año:${v.anio}|">Modelo</h1>
-    <h2 th:text="|Número de Serie ${v.numSerie} ID:${v.id}|">Marca</h2>
-    <div th:switch="${v.tipoRegistro}">
-        <p th:case="1">Número económico</p>
-        <p th:case="2">Número temporal</p>
-        <p th:case="3">Placas</p>
-    </div>
-    <a th:attr="href=|/delVehiculo?id=${v.id}&numSerie=${v.numSerie}|" class="btn btn-primary">Eliminar</a>
-</div>
+
 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
