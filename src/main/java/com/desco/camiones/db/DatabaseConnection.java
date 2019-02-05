@@ -1,6 +1,6 @@
 package com.desco.camiones.db;
 
-import com.desco.camiones.models.Camion;
+import com.desco.camiones.models.Vehiculo;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -116,25 +116,52 @@ public class DatabaseConnection {
     }
 
     /**
-     * Genéra un ArrayList de objetos Camion a partir de todos los registros
+     * Genéra un ArrayList de objetos Vehiculo a partir de todos los registros
      * que se tengan en la base de datos
-     * @return ArrayList de objetos Camion
+     * @return ArrayList de objetos Vehiculo
      */
-    public static ArrayList<Camion> getAllCamiones(){
-        ArrayList<Camion> camiones = new ArrayList<Camion>();
+    public static ArrayList<Vehiculo> getAllCamiones(){
+        ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
         try{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * from camiones");
             while(rs.next()){
-                camiones.add(new Camion(
+                vehiculos.add(new Vehiculo(
                         rs.getString("id"),
+                        rs.getInt("tipo_registro"),
                         rs.getString("marca"),
+                        rs.getString("submarca"),
                         rs.getString("modelo"),
-                        rs.getInt("año")));
+                        rs.getString("tipo"),
+                        rs.getInt("año"),
+                        rs.getString("num_serie"),
+                        rs.getInt("capacidad"),
+                        rs.getInt("num_compart"),
+                        rs.getInt("cap_compart"),
+                        rs.getString("aseguradora"),
+                        rs.getString("num_poliza"),
+                        rs.getString("vencimiento_poliza"),
+                        rs.getString("municipio"),
+                        rs.getString("estado"),
+                        rs.getString("num_corralon"),
+                        rs.getString("municipio_corralon")));
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return camiones;
+        return vehiculos;
+    }
+
+    public static int delVehiculo(String numSerie,String id){
+        try{
+            PreparedStatement pt = conn.prepareStatement("DELETE FROM camiones WHERE camiones.id=? AND camiones.num_serie=?");
+            pt.setString(1,id);
+            pt.setString(2,numSerie);
+            pt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+            return e.getErrorCode();
+        }
+        return 0;
     }
 }
